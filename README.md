@@ -55,6 +55,42 @@ microcontroller can watch for the abrupt-stop pattern too.)*
 
 ---
 
+## Prerequisites
+
+**Hardware**
+- Adafruit Feather RP2040 (or compatible RP2040 board)
+- MAX30101 heart-rate/pulse-ox sensor (STEMMA QT / Qwiic connector)
+
+**Software**
+- [Pico SDK](https://github.com/raspberrypi/pico-sdk) (v2.3.0)
+- ARM GNU Toolchain (v15_2_Rel1)
+- CMake (3.13+)
+- Picotool (v2.3.0)
+- Raspberry Pi Pico VS Code extension (recommended, handles the SDK/toolchain setup for you)
+
+---
+
+## Build & Flash
+
+**1. Compile**
+```
+mkdir build
+cd build
+cmake ..
+make
+```
+This produces a `.uf2` file (e.g. `max30101_hr.uf2`) in the `build` folder.
+
+**2. Put the RP2040 into UF2 bootloader mode**
+Hold the **BOOTSEL** button on the board while plugging it into USB (or while pressing reset if
+already plugged in). It will show up on your computer as a USB mass-storage drive.
+
+**3. Upload**
+Drag and drop the `.uf2` file onto that drive. The board will automatically reboot and start
+running the new code.
+
+---
+
 ## Status / Next Steps
 
 - [ ] **Finish motion sensing integration** — top priority; unlocks the abrupt-stop half of
